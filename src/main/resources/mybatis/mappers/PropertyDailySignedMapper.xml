@@ -38,6 +38,17 @@
     	signedDate = #{signedDate}
   </select>
   
+  <select id="queryPropertyDailySignedByDatePropertyTypeCode" resultMap="PropertyDailySignedResultMap">
+    select 
+    	propertyTypeCode,propertyId,propertyName,district,signedNumber,reservedNumber,signedArea,signedAvgPrice,signedDate,signedTime 
+    from 
+    	Property_Daily_Signed 
+    where 
+    	signedDate = #{signedDate}
+    	and propertyTypeCode=#{propertyTypeCode}
+  </select>
+  
+  
    <select id="queryPropertyDailySignedByDateDistrict" resultMap="PropertyDailySignedResultMap">
     select 
     	propertyTypeCode,propertyId,propertyName,district,signedNumber,reservedNumber,signedArea,signedAvgPrice,signedDate,signedTime     

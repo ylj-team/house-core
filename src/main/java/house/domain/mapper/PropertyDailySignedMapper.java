@@ -10,4 +10,6 @@ public interface PropertyDailySignedMapper {
 	public List<PropertyDailySigned> queryPropertyDailySignedByDate(@Param("signedDate")String signedDate);
 	public List<PropertyDailySigned> queryPropertyDailySignedByDatePropertyId(@Param("signedDate")String signedDate,@Param("propertyId")String propertyId);
 	public List<PropertyDailySigned> queryPropertyDailySignedByDateDistrict(@Param("signedDate")String signedDate,@Param("district")String district);
+	public List<PropertyDailySigned> queryPropertyDailySignedByDatePropertyTypeCode(@Param("signedDate")String signedDate,@Param("propertyTypeCode")String propertyTypeCode);
+
 }

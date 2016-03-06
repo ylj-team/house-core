@@ -19,13 +19,33 @@
  
    </resultMap>  
    
-  <select id="querySubscriptOfAccount" resultMap="PropertyResultMap">
+  <select id="querySubscriptionOfAccount" resultMap="PropertyResultMap">
     select 
     	account,propertyId,propertyName,subscriptTime
     from 
     	User_Subscribed_Property
     where 
-    	account = #{account}
+    	account = #{account,jdbcType=VARCHAR}
   </select>
+  
+  
+   <insert id="insertSubscriptions">
+   
+    insert into User_Subscribed_Property
+    	(account,propertyId,propertyName,subscriptTime)
+	values 
+		<foreach collection="list" item="item" index="index" separator="," > 
+   		 	(#{item.account,jdbcType=VARCHAR},#{item.propertyId,jdbcType=VARCHAR},#{item.propertyName,jdbcType=VARCHAR},#{item.subscriptTime,jdbcType=BIGINT})
+   		 </foreach>  
+  </insert>
+      
+   
+   <delete id="deleteSubscriptions">
+    
+    delete from User_Subscribed_Property
+    where
+		 account=#{account,jdbcType=VARCHAR} and propertyId=#{propertyId,jdbcType=VARCHAR}
+  </delete>
+
       
 </mapper>

@@ -9,6 +9,12 @@ import house.domain.PropertyPresellSaleState;
 public interface PropertyPresellSaleStateMapper {
 	
 	
-	public List<PropertyPresellSaleState> queryPresellSaleStateByPropertyIdAndStateChangeTime(@Param("propertyId")String propertyId,@Param("presellId")String presellId,@Param("stateChangeTimeBegin")String stateChangeTimeBegin,@Param("stateChangeTimeEnd")String stateChangeTimeEnd);
+	public List<PropertyPresellSaleState> queryPresellSaleStateByPropertyPresellIdAndStateChangeTime(@Param("propertyId")String propertyId,@Param("presellId")String presellId,@Param("stateChangeTimeBegin")String stateChangeTimeBegin,@Param("stateChangeTimeEnd")String stateChangeTimeEnd);
 
+	public List<PropertyPresellSaleState> queryPresellSaleStateByPropertyIdAndStateChangeTime(@Param("propertyId")String propertyId,@Param("stateChangeTimeBegin")String stateChangeTimeBegin,@Param("stateChangeTimeEnd")String stateChangeTimeEnd);
+
+	public List<PropertyPresellSaleState> queryPresellSaleStateByPropertyId(@Param("propertyId")String propertyId);
+	
+
+	
 }

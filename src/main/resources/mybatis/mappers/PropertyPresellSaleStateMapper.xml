@@ -14,12 +14,24 @@
 		<result column="presellId" property="presellId" jdbcType="VARCHAR" />
 		<result column="propertyName" property="propertyName" jdbcType="VARCHAR" />
 		<result column="presellName" property="presellName" jdbcType="VARCHAR" />
-
 		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="stateChangeTime" property="stateChangeTime" jdbcType="VARCHAR" />
 
 	</resultMap>
 
+
+	<select id="queryPresellSaleStateByPropertyPresellIdAndStateChangeTime" resultMap="PresellSaleStateResultMap">
+	
+		select
+			propertyId,presellId,propertyName,presellName,content,stateChangeTime
+		from 
+			Property_Presell_Sale_State 
+		where 
+			propertyId = #{propertyId,jdbcType=VARCHAR}
+			and presellId=#{presellId,jdbcType=VARCHAR}
+			and stateChangeTime &gt;= #{stateChangeTimeBegin,jdbcType=VARCHAR}
+			and stateChangeTime &lt;= #{stateChangeTimeEnd,jdbcType=VARCHAR}
+	</select>
 
 	<select id="queryPresellSaleStateByPropertyIdAndStateChangeTime" resultMap="PresellSaleStateResultMap">
 	
@@ -28,11 +40,20 @@
 		from 
 			Property_Presell_Sale_State 
 		where 
-			propertyId = #{propertyId}
-			and presellId=#{presellId}
-			and stateChangeTime &gt;= #{stateChangeTimeBegin}
-			and stateChangeTime &lt;= #{stateChangeTimeEnd}
+			propertyId = #{propertyId,jdbcType=VARCHAR}
+			and stateChangeTime &gt;= #{stateChangeTimeBegin,jdbcType=VARCHAR}
+			and stateChangeTime &lt;= #{stateChangeTimeEnd,jdbcType=VARCHAR}
 	</select>
-
+	
+	<select id="queryPresellSaleStateByPropertyId" resultMap="PresellSaleStateResultMap">
+	
+		select
+			propertyId,presellId,propertyName,presellName,content,stateChangeTime
+		from 
+			Property_Presell_Sale_State 
+		where 
+			propertyId = #{propertyId,jdbcType=VARCHAR}
+		
+	</select>
 
 </mapper>

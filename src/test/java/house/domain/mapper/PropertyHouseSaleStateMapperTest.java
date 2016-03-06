@@ -30,8 +30,11 @@ public class PropertyHouseSaleStateMapperTest {
 
 		String propertyId = "64897079";
 
-		String stateChangeTimeBegin ="2016-03-04 00:00:00";
-		String stateChangeTimeEnd   ="2016-03-05 24:00:00";
+		String stateChangeTimeBegin ="0000-00-00 00:00:00";
+		String stateChangeTimeEnd   ="9999-00-00 24:00:00";
+		
+		//stateChangeTimeEnd   ="2016-03-05 24:00:00";
+		//
 		List<PropertyHouseSaleState> propertyHouseSaleStates = mapper.queryHouseSaleStateByPropertyIdAndStateChangeTime(propertyId, stateChangeTimeBegin,
 				stateChangeTimeEnd);
 		System.out.println(JSON.toJSONString(propertyHouseSaleStates, true));
@@ -41,6 +44,31 @@ public class PropertyHouseSaleStateMapperTest {
 		sqlSession.close();
 	}
 
+	
+	public static void testQueryHouseSaleStateByPropertyBuildingIdIdAndStateChangeTime() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		// 创建Usermapper对象，mybatis自动生成mapper代理对象
+		PropertyHouseSaleStateMapper mapper = sqlSession.getMapper(PropertyHouseSaleStateMapper.class);
+
+		// Map<String,String> argments=new HashMap<String,String>();
+		// argments.put("district", district);
+		// argments.put("signedDate", signedDate);
+
+		String propertyId = "64897079";
+		String buildingId="133486212";
+		String stateChangeTimeBegin ="0000-00-00 00:00:00";
+		String stateChangeTimeEnd   ="9999-00-00 24:00:00";
+		
+		//stateChangeTimeEnd   ="2016-03-05 24:00:00";
+		//
+		List<PropertyHouseSaleState> propertyHouseSaleStates = mapper.queryHouseSaleStateByPropertyBuildingIdAndStateChangeTime(propertyId, buildingId, stateChangeTimeBegin, stateChangeTimeEnd);
+		
+		System.out.println(JSON.toJSONString(propertyHouseSaleStates, true));
+
+		System.out.println(propertyHouseSaleStates.size());
+
+		sqlSession.close();
+	}
 	public static void main(String[] args) throws IOException {
 
 		String resource = "mybatis/mybatis-config.xml";
@@ -48,6 +76,7 @@ public class PropertyHouseSaleStateMapperTest {
 		// 创建SqlSessionFcatory
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
-		testQueryHouseSaleStateByPropertyIdAndStateChangeTime();
+		//testQueryHouseSaleStateByPropertyIdAndStateChangeTime();
+		testQueryHouseSaleStateByPropertyBuildingIdIdAndStateChangeTime();
 	}
 }

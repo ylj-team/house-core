@@ -49,4 +49,18 @@
 	</select>
 
 
+
+<select id="queryHouseSaleStateByPropertyBuildingIdAndStateChangeTime" resultMap="HouseSaleStateResultMap">
+	
+		select
+			propertyId,presellId,buildingId,houseId,propertyName,presellName,buildingName,houseName,located,area_inside,area_builtup,dePrice_maopei,dePrice_zhuangxiu,dePrice_zongjia,houseStateId,houseStateName,houseTypeId,stateChangeTime 
+		from 
+			Property_House_Sale_State 
+		where 
+			propertyId = #{propertyId}
+			and buildingId= #{buildingId}
+			and stateChangeTime &gt;= #{stateChangeTimeBegin}
+			and stateChangeTime &lt;= #{stateChangeTimeEnd}
+	</select>
+
 </mapper>

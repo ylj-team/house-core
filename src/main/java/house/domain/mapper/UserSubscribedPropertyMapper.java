@@ -7,5 +7,9 @@ import house.domain.UserSubscribedProperty;
 
 public interface UserSubscribedPropertyMapper {
 
-	public List<UserSubscribedProperty> querySubscriptOfAccount(@Param("account") String account);
+	public List<UserSubscribedProperty> querySubscriptionOfAccount(@Param("account") String account);
+	
+	public void insertSubscriptions(List<UserSubscribedProperty> subscriptions);
+	
+	public void deleteSubscriptions(@Param("account") String account,@Param("propertyId") String propertyId);
 }
