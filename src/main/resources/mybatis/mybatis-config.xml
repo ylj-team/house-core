@@ -70,7 +70,10 @@
 		<mapper resource="mybatis/mappers/PropertyDailySignedMapper.xml" />
 		<mapper resource="mybatis/mappers/PropertyHouseSaleStateMapper.xml" />
 		<mapper resource="mybatis/mappers/PropertyPresellSaleStateMapper.xml" />
+		<mapper resource="mybatis/mappers/UserMapper.xml" />
+		<mapper resource="mybatis/mappers/UserSubscribedPropertyMapper.xml" />
 	
+		
 			<!--<mapper resource="ylj/demo/mybatis/*Mapper.xml" /> -->
 		<!-- Using url fully qualified paths -->
 		

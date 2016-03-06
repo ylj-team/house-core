@@ -2,7 +2,7 @@ package house.domain.mapper;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,14 +11,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.alibaba.fastjson.JSON;
 
-import house.domain.Property;
-import house.domain.mapper.PropertyMapper;
+import house.domain.UserSubscribedProperty;
 
-
-
-public class PropertyMapperTest {
-
-	public static void main(String[] args) throws IOException{
+public class UserSubscribedPropertyMapperTest {
+public static void main(String[] args) throws IOException{
 		
 	    String resource = "mybatis/mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
@@ -27,12 +23,13 @@ public class PropertyMapperTest {
         
 		 SqlSession sqlSession = sqlSessionFactory.openSession();
 	        // 创建Usermapper对象，mybatis自动生成mapper代理对象
-		 PropertyMapper mapper = sqlSession.getMapper(PropertyMapper.class);
-		 String propertyId = "64897079";
+		 UserSubscribedPropertyMapper mapper = sqlSession.getMapper(UserSubscribedPropertyMapper.class);
+		 String account = "yanglujuncc@gmail.com";
 
-		
-		 Property property= mapper.queryPropertyByPropertyId(propertyId);
-		 System.out.println(JSON.toJSONString(property, true));
+		 
+		 List<UserSubscribedProperty> subscribtions= mapper.querySubscriptOfAccount(account);
+		 System.out.println(JSON.toJSONString(subscribtions, true));
+		 System.out.println(subscribtions.size());
 	     sqlSession.close();
 	}
 }

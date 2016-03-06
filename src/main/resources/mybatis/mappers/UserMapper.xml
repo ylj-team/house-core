@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace命名空间,作用就是对sql进行分类化的管理,理解为sql隔离
+    注意:使用mapper代理开发时，namespace有特殊作用,namespace等于mapper接口地址
+ -->
+<mapper namespace="house.domain.mapper.UserMapper">
+ 
+ 
+  <resultMap id="PropertyResultMap" type="house.domain.User">  
+    <!--  <id column="id" property="id"  jdbcType="BIGINT" />   -->   
+    
+        <result column="account" property="account"   jdbcType="VARCHAR"/>  
+        <result column="passwdEncodedStrategy" property="passwdEncodedStrategy"   jdbcType="VARCHAR"/> 
+        <result column="passwdEncoded" property="passwdEncoded"   jdbcType="VARCHAR"/> 
+        <result column="state" property="state"   jdbcType="INTEGER"/> 
+        <result column="createTime" property="createTime"   jdbcType="BIGINT"/>  
+   
+
+   </resultMap>  
+   
+  <select id="queryUserByAccount" resultMap="PropertyResultMap">
+    select 
+    	account,createTime,passwdEncodedStrategy,passwdEncoded,state
+    from 
+    	User
+    where 
+    	account = #{account}
+  </select>
+ 
+      
+</mapper>

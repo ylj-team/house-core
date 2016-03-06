@@ -30,8 +30,8 @@ public class PropertyHouseSaleStateMapperTest {
 
 		String propertyId = "64897079";
 
-		String stateChangeTimeBegin = "2016-01-31 00:00:00";
-		String stateChangeTimeEnd = "2016-02-01 24:00:00";
+		String stateChangeTimeBegin ="2016-03-04 00:00:00";
+		String stateChangeTimeEnd   ="2016-03-05 24:00:00";
 		List<PropertyHouseSaleState> propertyHouseSaleStates = mapper.queryHouseSaleStateByPropertyIdAndStateChangeTime(propertyId, stateChangeTimeBegin,
 				stateChangeTimeEnd);
 		System.out.println(JSON.toJSONString(propertyHouseSaleStates, true));
