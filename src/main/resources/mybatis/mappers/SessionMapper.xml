@@ -38,9 +38,12 @@ CREATE TABLE `Session` (
    		<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
     		#{sessionId,jdbcType=VARCHAR},#{item.key,jdbcType=VARCHAR},#{item.value,jdbcType=VARBINARY}
 		</foreach>
+	ON DUPLICATE KEY 
+    		UPDATE varValue=#{varValue,jdbcType=VARBINARY};
+		
   </insert>
       
-  <select id="querySession" resultType="java.util.HashMap">  
+  <select id="getSession" resultType="java.util.HashMap">  
     select varName,varValue
     from
     	Session
@@ -69,12 +72,16 @@ CREATE TABLE `Session` (
    
     insert into Session
     	(sessionId,varName,varValue)
-	values 
-    	#{sessionId,jdbcType=VARCHAR},#{varName,jdbcType=VARCHAR},#{varValue,jdbcType=VARBINARY}
-    	
+	value
+    	(
+    	  #{sessionId,jdbcType=VARCHAR},#{varName,jdbcType=VARCHAR},#{varValue,jdbcType=VARBINARY}
+    	)
+    ON DUPLICATE KEY 
+    	UPDATE varValue=#{varValue,jdbcType=VARBINARY};
+
  </insert>
-      
-  <select id="querySessionVar">  
+    
+  <select id="getSessionVar" >  
     select varValue
     from
     	Session
