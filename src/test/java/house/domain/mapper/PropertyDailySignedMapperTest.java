@@ -154,7 +154,55 @@ public class PropertyDailySignedMapperTest {
 		 
 	     sqlSession.close();
 	}
+	public static void testQueryPropertyDailySignedByDateRangePropertyId(){
+		 SqlSession sqlSession = sqlSessionFactory.openSession();
+	        // 创建Usermapper对象，mybatis自动生成mapper代理对象
+		 PropertyDailySignedMapper mapper = sqlSession.getMapper(PropertyDailySignedMapper.class);
+		 
+		 String signedDateFrom="2016-02-06";
+		 String signedDateTo="2016-03-06";	
+		 String propertyId="64897079";
+			
+		 
+		// Map<String,String> argments=new HashMap<String,String>();
+	//	 argments.put("district", district);
+		// argments.put("signedDate", signedDate);
+		 
+		 List<PropertyDailySigned> propertyDailySigneds=mapper.queryPropertyDailySignedByDateRangePropertyId(signedDateFrom, signedDateTo, propertyId);
+		 System.out.println(JSON.toJSONString(propertyDailySigneds, true));
+
+		 System.out.println(propertyDailySigneds.size());
 	
+		 
+	     sqlSession.close();
+	}
+	
+	public static void testQueryPropertyDailySignedByDatePropertyTypeCodes(){
+		 SqlSession sqlSession = sqlSessionFactory.openSession();
+	        // 创建Usermapper对象，mybatis自动生成mapper代理对象
+		 PropertyDailySignedMapper mapper = sqlSession.getMapper(PropertyDailySignedMapper.class);
+		 
+		 String signedDate="2016-03-06";	 
+		 String propertyTypeCode="330231";
+		 
+		 List<String> propertyTypeCodes=new LinkedList<String>();
+		// propertyTypeCodes.add("330231");
+		// propertyTypeCodes.add("330108");
+		 propertyTypeCodes.add("330181");  //29
+		 propertyTypeCodes.add("330184");  //75
+		 
+		// Map<String,String> argments=new HashMap<String,String>();
+	//	 argments.put("district", district);
+		// argments.put("signedDate", signedDate);
+		 
+		 List<PropertyDailySigned> propertyDailySigneds=maxSignNumber(mapper.queryPropertyDailySignedByDatePropertyTypeCodes(signedDate, propertyTypeCodes));
+		 System.out.println(JSON.toJSONString(propertyDailySigneds, true));
+
+		 System.out.println(propertyDailySigneds.size());
+	
+		 
+	     sqlSession.close();
+	}
 public static void main(String[] args) throws IOException{
 		
 	    String resource = "mybatis/mybatis-config.xml";
@@ -164,6 +212,6 @@ public static void main(String[] args) throws IOException{
          // testQueryPropertyDailySignedByDateDistrict();
          // testQueryPropertyDailySignedByDatePropertyId();
           
-          testQueryPropertyDailySignedByDatePropertyTypeCode2();
+          testQueryPropertyDailySignedByDatePropertyTypeCodes();
 	}
 }

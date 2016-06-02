@@ -36,9 +36,6 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url" value="jdbc:mysql://121.43.116.186/house?useUnicode=true&amp;characterEncoding=UTF8" />
-	
-			
-			
 				<property name="username" value="house_user" />
 				<property name="password" value="house_password" />
 			</dataSource>

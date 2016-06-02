@@ -68,6 +68,8 @@ public class PropertyHouseSaleStateMapperTest {
 		System.out.println(propertyHouseSaleStates.size());
 
 		sqlSession.close();
+		
+		System.out.println("'"+stateChangeTimeEnd.substring(0, 10)+"'");
 	}
 	public static void main(String[] args) throws IOException {
 

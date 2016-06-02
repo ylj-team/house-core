@@ -49,6 +49,21 @@
   </select>
   
   
+  
+    <select id="queryPropertyDailySignedByDatePropertyTypeCodes" resultMap="PropertyDailySignedResultMap">
+    select 
+    	propertyTypeCode,propertyId,propertyName,district,signedNumber,reservedNumber,signedArea,signedAvgPrice,signedDate,signedTime 
+    from 
+    	Property_Daily_Signed 
+    where 
+    	signedDate = #{signedDate}
+    	and propertyTypeCode in 
+    	<foreach collection="propertyTypeCodes"  item="propertyTypeCode" index="index" open="(" separator="," close=")">  
+  			#{propertyTypeCode}  
+ 		</foreach>  
+ 
+  </select>
+  
    <select id="queryPropertyDailySignedByDateDistrict" resultMap="PropertyDailySignedResultMap">
     select 
     	propertyTypeCode,propertyId,propertyName,district,signedNumber,reservedNumber,signedArea,signedAvgPrice,signedDate,signedTime     
@@ -67,5 +82,14 @@
     	signedDate = #{signedDate} and propertyId=#{propertyId}
   </select>
 
-      
+        <select id="queryPropertyDailySignedByDateRangePropertyId" resultMap="PropertyDailySignedResultMap">
+    select 
+    	propertyTypeCode,propertyId,propertyName,district,signedNumber,reservedNumber,signedArea,signedAvgPrice,signedDate,signedTime 
+    from 
+    	Property_Daily_Signed
+    where 
+    	 signedDate &gt;= #{signedDateFrom}
+		and signedDate &lt;= #{signedDateTo}
+    	and propertyId=#{propertyId}
+  </select>
 </mapper>
