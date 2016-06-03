@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.alibaba.fastjson.JSON;
 
 import house.domain.Property;
+import house.domain.SessionUnit;
 
 public class SessionMapperTest {
 public static void main(String[] args) throws IOException{
@@ -29,15 +30,25 @@ public static void main(String[] args) throws IOException{
 		 String varName="name_vvv";
 		 byte[] varValue="hello2".getBytes();
 		 
-		// mapper.setSessionVar(sessionId, varName, varValue);
-		// sqlSession.commit(true);
-		// byte[] varValue2=mapper.getSessionVar(sessionId, varName);
-		// System.out.println(new String(varValue2));
+		mapper.setSessionVar(sessionId, varName, varValue);
+		 sqlSession.commit(true);
+		 
+		 System.out.println("set value success.");
+		 SessionUnit varValue2=mapper.getSessionVar(sessionId, varName);
+		System.out.println(varValue2.name);
+		System.out.println(new String(varValue2.value));
+		 
+//		 byte[] varValue2=mapper.getSessionVar(sessionId, varName);
+//		 System.out.println(new String(varValue2));
+//		 
+		 
+		 /*
 		 Map<String, byte[]> vars= mapper.getSession(sessionId);
 		 System.out.println(vars.size());
 		 for(Entry<String, byte[]> entry:vars.entrySet()){
 			 System.out.println(entry.getKey()+":"+entry.getValue());
 		 }
+		 */
 	
 	}
 }
